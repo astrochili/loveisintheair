@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="75" tilewidth="8" tileheight="8" nextobjectid="39">
+ <objectgroup color="#dd2431" name="Solid">
+  <object id="18" x="0" y="256" width="16" height="328"/>
+  <object id="20" x="0" y="240" width="160" height="16"/>
+  <object id="21" x="784" y="0" width="16" height="496"/>
+  <object id="22" x="0" y="584" width="800" height="16"/>
+  <object id="25" x="160" y="240" width="16" height="200"/>
+  <object id="26" x="176" y="240">
+   <polygon points="0,0 112,-72 232,-40 0,56"/>
+  </object>
+  <object id="27" x="176" y="440">
+   <polygon points="0,0 104,88 144,72 128,48 0,-32"/>
+  </object>
+  <object id="28" x="24" y="304">
+   <polygon points="64,-48 -8,-48 -8,24"/>
+  </object>
+  <object id="29" x="16" y="528">
+   <polygon points="0,0 48,56 0,56"/>
+  </object>
+  <object id="31" x="280" y="528">
+   <polygon points="-144,-112 -152,-152 -120,-192 -120,-88"/>
+  </object>
+  <object id="32" x="784" y="0">
+   <polygon points="0,0 -232,0 -312,88 0,168"/>
+  </object>
+  <object id="33" x="344" y="0">
+   <polygon points="0,0 112,0 -32,96 -80,56 -88,0"/>
+  </object>
+  <object id="34" x="0" y="16">
+   <polygon points="0,16 0,224 80,224 96,136"/>
+  </object>
+  <object id="35" x="16" y="16">
+   <polygon points="0,0 -16,-16 240,-16 248,40"/>
+  </object>
+  <object id="36" x="512" y="320">
+   <polygon points="0,0 64,104 152,32 112,-56 48,-48"/>
+  </object>
+  <object id="37" x="784" y="496">
+   <polygon points="0,0 -80,88 16,88 16,0"/>
+  </object>
+  <object id="38" x="304" y="488">
+   <polygon points="0,0 56,-40 128,-56 136,-32 64,16 16,24"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#69a2c2" name="Entities">
+  <object id="17" name="Player" x="296" y="368"/>
+ </objectgroup>
+</map>
