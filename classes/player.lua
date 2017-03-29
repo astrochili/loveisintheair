@@ -3,30 +3,50 @@ local Player = Class:extend()
 -- Global functions
 
 function Player:new(x, y, r)
-  self.collider = world:newCircleCollider(x, y, r, {
+  if (r == nil) then r = 32 end
+
+  self.collider = box2d:newCircleCollider(x, y, r, {
     body_type = 'dynamic',
     collision_class = 'ball'
   })
   self.collider.fixtures.main:setRestitution(0.9)
   self.speed = 3000
+
+  gameloop:addLoop(self)
+
+  local img = love.graphics.newImage('assets/images/circle.png')
+  psystem = love.graphics.newParticleSystem(img, 32)
+  psystem:setParticleLifetime(1, 2)
+  psystem:setColors(255, 255, 255, 255, 255, 255, 255, 0)
+  gameloop:addLoop(psystem)
 end
 
 function Player:update(dt)
+
+  pushX, pushY = 0, 0
+
   if love.keyboard.isDown("right") then
-    self:push(dt, self.speed, 0)
+    pushX = self.speed
   elseif love.keyboard.isDown("left") then
-    self:push(dt, -self.speed, 0)
+    pushX = -self.speed
   end
 
   if love.keyboard.isDown("up") then
-    self:push(dt, 0, -self.speed)
+    pushY = -self.speed
   elseif love.keyboard.isDown("down") then
-    self:push(dt, 0, self.speed)
+    pushY = self.speed
   end
+
+  if pushX ~= 0 or pushY~= 0 then
+    self:push(dt, pushX, pushY)
+  end
+
 end
 
 function Player:draw()
-  love.graphics.setColor(150, 200, 100, 255)
+  love.graphics.setColor(lume.color(colors.air, 256))
+  love.graphics.draw(psystem, self:getX(), self:getY())
+  love.graphics.setColor(lume.color(colors.ball, 256))
   love.graphics.circle("fill", self:getX(), self:getY(), self:getRadius())
 end
 
@@ -63,9 +83,15 @@ end
 function Player:push(dt, x, y)
   self.collider.body:applyForce(x, y) -- push ball
 
-  newRadius = self:getRadius() - dt -- release air
-  if newRadius < 5 then
-    newRadius = 5
+  accelerationX = -x/self.speed * 200
+  accelerationY = -y/self.speed * 200
+  psystem:setSizes(self:getRadius()/16, self:getRadius()/32)
+  psystem:setLinearAcceleration(accelerationX-50, accelerationY-50, accelerationX+50, accelerationY+50)
+  psystem:emit(32)
+
+  newRadius = self:getRadius() - dt * 2 -- release air
+  if newRadius < 1 then
+    newRadius = 1
   end
 
   self:setRadius(newRadius)
