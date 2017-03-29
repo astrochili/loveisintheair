@@ -3,6 +3,7 @@
 log = require 'libs/log'
 hx = require 'libs/hxdx'
 lume = require 'libs/lume'
+local gamera = require 'libs/gamera'
 
 -- classes
 Class = require 'libs/classic'
@@ -47,23 +48,28 @@ function love.load()
     end
   end
 
+  camera = gamera.new(0, 0, level.width * level.tilewidth, level.height * level.tileheight)
+
 end
 
 function love.update(dt)
 
   world:update(dt)
   player:update(dt)
+  camera:setPosition(player:getX(), player:getY())
 
   love.window.setTitle("FPS: " .. love.timer.getFPS())
 
 end
 
 function love.draw()
-  -- world:draw()
-  player:draw()
 
-  for i,solid in ipairs(solids) do
-    solid:draw()
-  end
+  camera:draw(function(l,t,w,h)
+    -- world:draw()
+    player:draw()
+    for i,solid in ipairs(solids) do
+      solid:draw()
+    end
+  end)
 
 end
