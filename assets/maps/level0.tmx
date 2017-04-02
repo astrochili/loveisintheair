@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="8" tileheight="8" nextobjectid="39">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="8" tileheight="8" nextobjectid="44">
  <objectgroup color="#dd2431" name="Solid">
   <object id="18" x="104" y="456" width="16" height="328"/>
   <object id="20" x="104" y="440" width="160" height="16"/>
@@ -42,6 +42,12 @@
   <object id="38" x="408" y="688">
    <polygon points="0,0 56,-40 128,-56 136,-32 64,16 16,24"/>
   </object>
+ </objectgroup>
+ <objectgroup color="#2db238" name="Triggers">
+  <object id="39" type="health" x="688" y="424">
+   <polygon points="56,0 40,-88 192,-48 192,72"/>
+  </object>
+  <object id="41" type="exit" x="528" y="144" width="168" height="56"/>
  </objectgroup>
  <objectgroup color="#69a2c2" name="Entities">
   <object id="17" name="Player" x="416" y="560"/>

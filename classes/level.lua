@@ -8,29 +8,20 @@ function Level:new(name)
   self.width = map.width * map.tilewidth
   self.height = map.height * map.tileheight
   self.start = { x = 0, y = 0 }
-  self.solids = { }
+  self.meshes = { }
+  self.entities = { }
 
   for i, layer in ipairs(map.layers) do
-    if (layer.name == "Solid") then
-      for i, object in ipairs(layer.objects) do
-        if object.shape == "rectangle" then
-          local rect = Solid.newRect(object.x, object.y, object.width, object.height)
-          table.insert(self.solids, rect)
-        elseif object.shape == "polygon" then
-          local vertices = {}
-          for i, point in ipairs(object.polygon) do
-            table.insert(vertices, object.x + point.x)
-            table.insert(vertices, object.y + point.y)
-          end
-          local polygon = Solid.newPolygon(vertices)
-          table.insert(self.solids, polygon)
-        end
+    if layer.name == "Solid" or layer.name == "Triggers" then
+      for i, obj in ipairs(layer.objects) do
+        if obj.type == "" then obj.type = meshTypes.solid end
+        local mesh = Mesh(obj.type, obj.shape, Level.settingsForTiledObject(obj))
+        table.insert(self.meshes, mesh)
       end
-    elseif (layer.name == "Entities") then
-      for i, object in ipairs(layer.objects) do
-        if object.name == "Player" then
-          self.start.x = object.x
-          self.start.y = object.y
+    elseif layer.name == "Entities" then
+      for i, obj in ipairs(layer.objects) do
+        if obj.name == "Player" then
+          self.start.x, self.start.y = obj.x, obj.y
         end
       end
     end
@@ -38,14 +29,30 @@ function Level:new(name)
 
 end
 
-function Level:update(dt)
-
+function Level:draw()
+  for i, mesh in ipairs(self.meshes) do
+    mesh:draw()
+  end
 end
 
-function Level:draw()
-  for i,solid in ipairs(self.solids) do
-    solid:draw()
+
+-- Helpers
+
+function Level.settingsForTiledObject(obj)
+  if obj.shape == meshShapes.rect then
+    return { x = obj.x, y = obj.y, w = obj.width, h = obj.height }
+  elseif obj.shape == meshShapes.polygon then
+    return Level.verticesFromTiledObject(obj)
   end
+end
+
+function Level.verticesFromTiledObject(obj)
+  local vertices = {}
+  for i, point in ipairs(obj.polygon) do
+    table.insert(vertices, obj.x + point.x)
+    table.insert(vertices, obj.y + point.y)
+  end
+  return vertices
 end
 
 return Level

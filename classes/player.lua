@@ -1,16 +1,17 @@
 local Player = Class:extend()
 
+playerState = { default = "default", riseup = "riseup", death = "death" }
+
 -- Global functions
 
 function Player:new(x, y, r)
   if (r == nil) then r = 32 end
 
-  self.collider = box2d:newCircleCollider(x, y, r, {
-    body_type = 'dynamic',
-    collision_class = 'ball'
-  })
+  local settings = { body_type = 'dynamic', collision_class = 'player' }
+  self.collider = box2d:newCircleCollider(x, y, r, settings)
   self.collider.fixtures.main:setRestitution(0.9)
   self.speed = 3000
+  self.state = playerState.default
 
   self.steam = love.graphics.newParticleSystem(love.graphics.newImage('assets/images/circle.png'), 32)
   self.steam:setParticleLifetime(1, 2)
@@ -28,8 +29,27 @@ function Player:update(dt)
 
   self.steam:update(dt)
 
-  if self.speed == 0 then
+  if self.state == playerState.death then
     return
+  end
+
+  if self.collider:enter(meshTypes.health) then
+    self.state = playerState.riseup
+  elseif self.collider:exit(meshTypes.health) then
+    self.state = playerState.default
+  elseif self.collider:enter(meshTypes.exit) then
+    game:nextLevel()
+    return
+  end
+
+  if self.state == playerState.riseup then
+    newRadius = self:getRadius() + dt * 5
+    self:setRadius(newRadius)
+
+    if newRadius > 48 then
+      self.state = playerState.death
+      self:destroy()
+    end
   end
 
   pushX, pushY = 0, 0
@@ -58,12 +78,12 @@ function Player:push(dt, x, y)
 
   self.collider.body:applyForce(x, y) -- push ball
 
-  newRadius = self:getRadius() - dt * 2 -- release air
-
+  newRadius = self:getRadius() - dt * 3
   self:setRadius(newRadius)
   self:releaseSteam(x, y)
 
   if newRadius < 1 then
+    self.state = playerState.death
     self:destroy()
   end
 
@@ -79,6 +99,7 @@ function Player:releaseSteam(x, y)
 end
 
 function Player:destroy()
+  self.steam:emit(8)
   self:setRadius(0)
   self.speed = 0
   self.collider.body:setLinearVelocity(0, 0)

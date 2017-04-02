@@ -8,7 +8,7 @@ return {
   height = 128,
   tilewidth = 8,
   tileheight = 8,
-  nextobjectid = 39,
+  nextobjectid = 44,
   properties = {},
   tilesets = {},
   layers = {
@@ -316,6 +316,50 @@ return {
             { x = 64, y = 16 },
             { x = 16, y = 24 }
           },
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "Triggers",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 39,
+          name = "",
+          type = "health",
+          shape = "polygon",
+          x = 688,
+          y = 424,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          polygon = {
+            { x = 56, y = 0 },
+            { x = 40, y = -88 },
+            { x = 192, y = -48 },
+            { x = 192, y = 72 }
+          },
+          properties = {}
+        },
+        {
+          id = 41,
+          name = "",
+          type = "exit",
+          shape = "rectangle",
+          x = 528,
+          y = 144,
+          width = 168,
+          height = 56,
+          rotation = 0,
+          visible = true,
           properties = {}
         }
       }
