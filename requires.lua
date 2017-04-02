@@ -3,11 +3,12 @@ log = require('libs/log')
 lume = require('libs/lume')
 
 -- singletones
-box2d = require('libs/hxdx').newWorld()
+hxdx = require('libs/hxdx')
 camera = require('libs/gamera').new(0, 0, 1, 1)
 settings = require('classes/settings')
 renderer = require('classes/renderer')
-gameloop = require('classes/gameloop')
+looper = require('classes/looper')
+game = require('classes/game')
 
 -- classes
 Class = require('libs/classic')

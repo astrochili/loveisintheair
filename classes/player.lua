@@ -15,10 +15,23 @@ function Player:new(x, y, r)
   self.steam = love.graphics.newParticleSystem(love.graphics.newImage('assets/images/circle.png'), 32)
   self.steam:setParticleLifetime(1, 2)
   self.steam:setColors(255, 255, 255, 255, 255, 255, 255, 0)
-  gameloop:addLoop(self)
+end
+
+function Player:draw()
+  love.graphics.setColor(lume.color(colors.air, 256))
+  love.graphics.draw(self.steam)
+  love.graphics.setColor(lume.color(colors.ball, 256))
+  love.graphics.circle("fill", self:getX(), self:getY(), self:getRadius())
 end
 
 function Player:update(dt)
+
+  self.steam:update(dt)
+
+  if self.speed == 0 then
+    return
+  end
+
   pushX, pushY = 0, 0
 
   if love.keyboard.isDown("right") then
@@ -37,15 +50,40 @@ function Player:update(dt)
     self:push(dt, pushX, pushY)
   end
 
-  self.steam:update(dt)
 end
 
-function Player:draw()
-  love.graphics.setColor(lume.color(colors.air, 256))
-  love.graphics.draw(self.steam)
-  love.graphics.setColor(lume.color(colors.ball, 256))
-  love.graphics.circle("fill", self:getX(), self:getY(), self:getRadius())
+-- Local functions
+
+function Player:push(dt, x, y)
+
+  self.collider.body:applyForce(x, y) -- push ball
+
+  newRadius = self:getRadius() - dt * 2 -- release air
+
+  self:setRadius(newRadius)
+  self:releaseSteam(x, y)
+
+  if newRadius < 1 then
+    self:destroy()
+  end
+
 end
+
+function Player:releaseSteam(x, y)
+  accelerationX = -x/self.speed * 200
+  accelerationY = -y/self.speed * 200
+  self.steam:setSizes(self:getRadius()/16, self:getRadius()/32)
+  self.steam:setPosition(self:getX(), self:getY())
+  self.steam:setLinearAcceleration(accelerationX-50, accelerationY-50, accelerationX+50, accelerationY+50)
+  self.steam:emit(1)
+end
+
+function Player:destroy()
+  self:setRadius(0)
+  self.speed = 0
+  self.collider.body:setLinearVelocity(0, 0)
+end
+
 
 -- Setters and getters
 
@@ -66,34 +104,11 @@ function Player:getY()
 end
 
 function Player:setRadius(radius)
-  -- self.collider.shapes.main:setRadius(radius)
   self.collider.fixtures.main:getShape():setRadius(radius)
 end
 
 function Player:getRadius()
-  -- return self.collider.shapes.main:getRadius()
   return self.collider.fixtures.main:getShape():getRadius()
-end
-
--- Local functions
-
-function Player:push(dt, x, y)
-  self.collider.body:applyForce(x, y) -- push ball
-
-  newRadius = self:getRadius() - dt * 2 -- release air
-  if newRadius < 1 then newRadius = 1 end
-  self:setRadius(newRadius)
-
-  self:releaseSteam(x, y)
-end
-
-function Player:releaseSteam(x, y)
-  accelerationX = -x/self.speed * 200
-  accelerationY = -y/self.speed * 200
-  self.steam:setSizes(self:getRadius()/16, self:getRadius()/32)
-  self.steam:setPosition(self:getX(), self:getY())
-  self.steam:setLinearAcceleration(accelerationX-50, accelerationY-50, accelerationX+50, accelerationY+50)
-  self.steam:emit(32)
 end
 
 return Player

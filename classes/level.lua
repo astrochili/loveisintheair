@@ -1,9 +1,10 @@
 local Level = Class:extend()
 
-function Level:new(file)
+function Level:new(name)
 
-  local map = require('assets/maps/' .. file)
+  local map = require('assets/maps/' .. name)
 
+  self.name = name
   self.width = map.width * map.tilewidth
   self.height = map.height * map.tileheight
   self.start = { x = 0, y = 0 }

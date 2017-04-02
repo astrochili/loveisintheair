@@ -10,7 +10,8 @@ settings.debug = true
 
 function settings:load()
   self.title = love.window.getTitle()
-  gameloop:addLoop(self)
+  love.mouse.setVisible(false)
+  looper:addLoop(self)
 end
 
 function settings:update(dt)

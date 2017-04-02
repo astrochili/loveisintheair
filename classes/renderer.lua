@@ -15,6 +15,12 @@ function renderer:addRenderer(obj, layerIndex)
   table.insert(self.layers[i], obj)
 end
 
+function renderer:clearLayers(layerIndexes)
+  for i, layerIndex in ipairs(layerIndexes) do
+    self.layers[layerIndex] = {}
+  end
+end
+
 function renderer:draw()
   for layerIndex = 1, #self.layers do
     for objIndex = 1, #self.layers[layerIndex] do
