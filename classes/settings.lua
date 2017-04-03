@@ -2,6 +2,7 @@ colors = {
   ball = "#FF6663",
   sky = "#020122",
   solid = "#58913A",
+  damage = "rgba(191, 63, 63, 0.5)",
   exit = "rgb(128, 128, 227, 0.3)",
   health = "rgba(246, 168, 90, 0.5)",
   air = "#BDBCE2"

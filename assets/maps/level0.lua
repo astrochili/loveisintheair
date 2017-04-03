@@ -8,7 +8,7 @@ return {
   height = 128,
   tilewidth = 8,
   tileheight = 8,
-  nextobjectid = 44,
+  nextobjectid = 49,
   properties = {},
   tilesets = {},
   layers = {
@@ -360,6 +360,51 @@ return {
           height = 56,
           rotation = 0,
           visible = true,
+          properties = {}
+        },
+        {
+          id = 46,
+          name = "",
+          type = "damage",
+          shape = "rectangle",
+          x = 280,
+          y = 496,
+          width = 8,
+          height = 112,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 47,
+          name = "",
+          type = "damage",
+          shape = "rectangle",
+          x = 640,
+          y = 776,
+          width = 168,
+          height = 8,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 48,
+          name = "",
+          type = "damage",
+          shape = "polygon",
+          x = 808,
+          y = 776,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          polygon = {
+            { x = 0, y = 0 },
+            { x = 80, y = -88 },
+            { x = 80, y = -80 },
+            { x = 0, y = 8 }
+          },
           properties = {}
         }
       }

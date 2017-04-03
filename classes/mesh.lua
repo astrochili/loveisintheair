@@ -1,6 +1,6 @@
 local Mesh = Class:extend()
 
-meshTypes = { solid = "solid", health = "health", exit = "exit" }
+meshTypes = { solid = "solid", health = "health", damage = "damage", exit = "exit" }
 meshShapes = { rect = "rectangle", polygon = "polygon" }
 
 function Mesh:new(type, shape, coords)

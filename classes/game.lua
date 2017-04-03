@@ -3,9 +3,9 @@ local levels = { "level0", "level1" }
 local game = {}
 
 local playerCollisionSettings = {
-  ignores = { meshTypes.health, meshTypes.exit },
-  enter = { meshTypes.health, meshTypes.exit },
-  exit = { meshTypes.health }
+  ignores = { meshTypes.health, meshTypes.damage, meshTypes.exit },
+  enter = { meshTypes.health, meshTypes.damage, meshTypes.exit },
+  exit = { meshTypes.health, meshTypes.damage },
 }
 
 function game:start(levelName)
@@ -20,6 +20,7 @@ function game:start(levelName)
   box2d = hxdx.newWorld()
   box2d:addCollisionClass(meshTypes.solid)
   box2d:addCollisionClass(meshTypes.health)
+  box2d:addCollisionClass(meshTypes.damage)
   box2d:addCollisionClass(meshTypes.exit)
   box2d:addCollisionClass('player', playerCollisionSettings)
   box2d:collisionClassesSet()

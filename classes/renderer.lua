@@ -22,6 +22,8 @@ function renderer:clearLayers(layerIndexes)
 end
 
 function renderer:draw()
+  -- box2d:draw()
+
   for layerIndex = 1, #self.layers do
     for objIndex = 1, #self.layers[layerIndex] do
       local obj = self.layers[layerIndex][objIndex]
