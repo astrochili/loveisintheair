@@ -8,7 +8,7 @@ return {
   height = 128,
   tilewidth = 8,
   tileheight = 8,
-  nextobjectid = 46,
+  nextobjectid = 47,
   properties = {},
   tilesets = {},
   layers = {
@@ -156,17 +156,36 @@ return {
           name = "",
           type = "health",
           shape = "polygon",
-          x = 608,
-          y = 480,
+          x = 556,
+          y = 486,
           width = 0,
           height = 0,
           rotation = 0,
           visible = true,
           polygon = {
-            { x = -176, y = -136 },
-            { x = -88, y = -208 },
+            { x = -130, y = -116 },
+            { x = -76, y = -154 },
             { x = 0, y = -136 },
             { x = -80, y = -16 }
+          },
+          properties = {}
+        },
+        {
+          id = 46,
+          name = "",
+          type = "damage",
+          shape = "polygon",
+          x = 476,
+          y = 472,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = true,
+          polygon = {
+            { x = 0, y = -2 },
+            { x = 118, y = 10 },
+            { x = 132, y = -76 },
+            { x = 80, y = -122 }
           },
           properties = {}
         }
