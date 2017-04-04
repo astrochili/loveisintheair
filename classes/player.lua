@@ -124,7 +124,7 @@ end
 
 
 function Player:destroy()
-  self.state = playerState.death
+  self:addState(playerState.death)
   self.steam:emit(8)
   self:setRadius(0)
   self.speed = 0
