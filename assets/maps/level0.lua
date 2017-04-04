@@ -944,6 +944,8 @@ return {
             { x = -128, y = -64 },
             { x = 0, y = -192 },
             { x = 0, y = -192 },
+            { x = 192, y = -288 },
+            { x = 192, y = -64 },
             { x = 64, y = 0 }
           },
           properties = {}
@@ -1195,25 +1197,6 @@ return {
             { x = 0, y = 0 },
             { x = 88, y = -104 },
             { x = 16, y = -72 }
-          },
-          properties = {}
-        },
-        {
-          id = 159,
-          name = "",
-          type = "health",
-          shape = "polygon",
-          x = 1000,
-          y = 1728,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          polygon = {
-            { x = -8, y = 0 },
-            { x = -200, y = 96 },
-            { x = -136, y = 288 },
-            { x = -8, y = 224 }
           },
           properties = {}
         },

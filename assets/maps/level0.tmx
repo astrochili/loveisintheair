@@ -134,7 +134,7 @@
  </objectgroup>
  <objectgroup color="#2db238" name="Triggers">
   <object id="91" type="health" x="800" y="2016">
-   <polygon points="-64,0 -128,-64 0,-192 0,-192 64,0"/>
+   <polygon points="-64,0 -128,-64 0,-192 0,-192 192,-288 192,-64 64,0"/>
   </object>
   <object id="117" type="damage" x="928" y="1216">
    <polygon points="0,0 -192,64 -160,-128 64,-192 64,-96"/>
@@ -174,9 +174,6 @@
   </object>
   <object id="156" type="health" x="432" y="1024">
    <polygon points="0,0 88,-104 16,-72"/>
-  </object>
-  <object id="159" type="health" x="1000" y="1728">
-   <polygon points="-8,0 -200,96 -136,288 -8,224"/>
   </object>
   <object id="163" type="exit" x="0" y="-32" width="320" height="32"/>
  </objectgroup>
