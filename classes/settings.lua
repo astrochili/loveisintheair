@@ -1,15 +1,14 @@
 colors = {
-  ball = "#FF6663",
-  sky = "#020122",
-  solid = "#58913A",
-  damage = "rgba(191, 63, 63, 0.5)",
-  exit = "rgb(128, 128, 227, 0.3)",
-  health = "rgba(246, 168, 90, 0.5)",
+  ball = "#DB2568",
+  sky = "#F2E2D2",
+  solid = "#56B4F7",
+  damage = "rgb(224, 10, 69, 0.5)",
+  exit = "rgb(137, 96, 142, 0.5)",
+  health = "rgb(96, 153, 45, 0.5)",
   air = "#BDBCE2"
 }
 
-local settings = {}
-settings.debug = true
+local settings = { debug = false }
 
 function settings:load()
   self.title = love.window.getTitle()

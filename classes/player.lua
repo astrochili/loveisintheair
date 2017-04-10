@@ -107,9 +107,6 @@ function Player:push(dt, x, y)
   self:setRadius(newRadius)
   self:releaseSteam(x, y)
 
-  if newRadius < 1 then
-    self:destroy()
-  end
 end
 
 

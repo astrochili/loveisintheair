@@ -30,12 +30,18 @@ function game:start(levelName)
   self.level = Level(levelName or levels[1])
   self.player = Player(self.level.start.x, self.level.start.y)
 
-  renderer:clearLayers( { layersOrder.level, layersOrder.player } )
-  renderer:addRenderer(self.level, layersOrder.level)
-  renderer:addRenderer(self.player, layersOrder.player)
+  local background = require "classes.parallax"
+  background.scale = 2
+  background.x = 0
+  background.y = 0
 
-  camera:setWorld(0, 0, self.level.width, self.level.height)
-  camera:setPosition(self.player:getX(), self.player:getY())
+  camera:clear()
+  camera:addObject(background, "background")
+  camera:addObject(self.level, "level")
+  camera:addObject(self.player, "player")
+
+  camera:setBounds(0, 0, self.level.width - love.graphics.getWidth(), self.level.height - love.graphics.getHeight())
+  camera:setCenter(self.player:getX(), self.player:getY())
 
   looper:addLoop(game)
 
@@ -52,7 +58,7 @@ end
 
 function game:update(dt)
   self.player:update(dt)
-  camera:setPosition(self.player:getX(), self.player:getY())
+  camera:setCenter(self.player:getX(), self.player:getY())
 end
 
 return game

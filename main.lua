@@ -2,8 +2,12 @@ require('requires')
 
 function love.load()
   settings:load()
-  renderer:load()
+  camera:load()
+  mixer:load()
   game:start()
+
+  settings.debug = true
+  mixer.music.gameplay:play()
 end
 
 function love.update(dt)
@@ -11,7 +15,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  camera:draw(function(l,t,w,h) renderer:draw() end)
+  camera:draw()
 end
 
 function love.keypressed(key)
