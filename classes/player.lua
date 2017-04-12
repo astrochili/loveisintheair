@@ -4,10 +4,11 @@ playerState = { default = "default", riseup = "riseup", risedown = "risedown", d
 
 -- Global functions
 
-function Player:new(x, y, r)
-  if (r == nil) then r = 32 end
+function Player:new(x, y, r, gang)
+  r = r or 32
+  self.gang = gang or Gang.red
 
-  local settings = { body_type = 'dynamic', collision_class = 'player' }
+  local settings = { body_type = 'dynamic', collision_class = Collision.player.class }
   self.collider = box2d:newCircleCollider(x, y, r, settings)
   self.collider.fixtures.main:setRestitution(0.9)
   self.speed = 3000
@@ -19,9 +20,9 @@ function Player:new(x, y, r)
 end
 
 function Player:draw()
-  love.graphics.setColor(lume.color(colors.air, 256))
+  love.graphics.setColor(lume.color(Color.steam, 256))
   love.graphics.draw(self.steam)
-  love.graphics.setColor(lume.color(colors.ball, 256))
+  love.graphics.setColor(lume.color(Color[self.gang], 256))
   love.graphics.circle("fill", self:getX(), self:getY(), self:getRadius())
 end
 
@@ -47,22 +48,22 @@ end
 -- Local functions
 
 function Player:checkCollisions()
-  if self.collider:enter(meshTypes.exit) then
-    game:nextLevel()
-    return true
-  end
-
-  if self.collider:enter(meshTypes.health) then
-    self:addState(playerState.riseup)
-  elseif self.collider:exit(meshTypes.health) then
-    self:removeState(playerState.riseup)
-  end
-
-  if self.collider:enter(meshTypes.damage) then
-    self:addState(playerState.risedown)
-  elseif self.collider:exit(meshTypes.damage) then
-    self:removeState(playerState.risedown)
-  end
+  -- if self.collider:enter(Exit.collisionClass) then
+  --   game:nextLevel()
+  --   return true
+  -- end
+  --
+  -- if self.collider:enter(Zone.collisionClass) then
+  --   self:addState(playerState.riseup)
+  -- elseif self.collider:exit(Zone.collisionClass) then
+  --   self:removeState(playerState.riseup)
+  -- end
+  --
+  -- if self.collider:enter(Zone.collisionClass) then
+  --   self:addState(playerState.risedown)
+  -- elseif self.collider:exit(Zone.collisionClass) then
+  --   self:removeState(playerState.risedown)
+  -- end
 end
 
 

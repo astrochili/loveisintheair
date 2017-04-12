@@ -7,22 +7,42 @@ function Level:new(name)
   self.name = name
   self.width = map.width * map.tilewidth
   self.height = map.height * map.tileheight
-  self.start = { x = 0, y = 0 }
+  self.start = { x = 0, y = 0, gang = Gang.red }
   self.meshes = { }
   self.entities = { }
+  self.colors = { }
+  self.colors.sky = map.properties["skycolor"] or Color.sky
+  self.colors.solid = map.properties["solidcolor"] or Color.solid
 
   for i, layer in ipairs(map.layers) do
-    if layer.name == "Solid" or layer.name == "Triggers" then
-      for i, obj in ipairs(layer.objects) do
-        if obj.type == "" then obj.type = meshTypes.solid end
-        local mesh = Mesh(obj.type, obj.shape, Level.settingsForTiledObject(obj))
-        table.insert(self.meshes, mesh)
-      end
-    elseif layer.name == "Entities" then
-      for i, obj in ipairs(layer.objects) do
-        if obj.name == "Player" then
-          self.start.x, self.start.y = obj.x, obj.y
+    for i, obj in ipairs(layer.objects) do
+      local mesh = nil
+
+      if obj.type == "" and obj.shape ~= "line" then
+        mesh = Solid(obj.shape, Level.settingsForTiledObject(obj), self.colors.solid)
+
+      elseif Gang[obj.type] ~= nil then
+        if obj.name == "player" then
+          self.start.x, self.start.y, self.start.gang = obj.x, obj.y, obj.type
+        elseif obj.name == "body" then
+          mesh = Body(obj.shape, Level.settingsForTiledObject(obj), obj.type)
+        elseif obj.name == "key" then
+          mesh = Key(Level.settingsForTiledObject(obj), obj.type)
+        else
+          mesh = Zone(obj.shape, Level.settingsForTiledObject(obj), obj.type, obj.id)
         end
+
+      elseif obj.type == "trigger" then
+        if obj.name == "switch" then
+          mesh = Switch(obj.shape, Level.settingsForTiledObject(obj), obj.properties["targetId"])
+        elseif obj.name == "exit" then
+          mesh = Exit(obj.shape, Level.settingsForTiledObject(obj))
+        end
+      end
+
+      if mesh ~= nil then
+        -- print(lume.serialize(mesh))
+        table.insert(self.meshes, mesh)
       end
     end
   end
@@ -39,9 +59,11 @@ end
 -- Helpers
 
 function Level.settingsForTiledObject(obj)
-  if obj.shape == meshShapes.rect then
+  if obj.shape == MeshShape.rect then
     return { x = obj.x, y = obj.y, w = obj.width, h = obj.height }
-  elseif obj.shape == meshShapes.polygon then
+  elseif obj.shape == MeshShape.circle then
+    return { x = obj.x, y = obj.y, r = obj.width * 0.5 }
+  elseif obj.shape == MeshShape.polygon then
     return Level.verticesFromTiledObject(obj)
   end
 end

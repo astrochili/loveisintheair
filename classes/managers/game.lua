@@ -1,12 +1,5 @@
-local levels = { "level0", "level1" }
-
+local levels = { "test", "level0", "level1" }
 local game = {}
-
-local playerCollisionSettings = {
-  ignores = { meshTypes.health, meshTypes.damage, meshTypes.exit },
-  enter = { meshTypes.health, meshTypes.damage, meshTypes.exit },
-  exit = { meshTypes.health, meshTypes.damage },
-}
 
 function game:start(levelName)
 
@@ -18,11 +11,13 @@ function game:start(levelName)
     looper:removeLoop(box2d)
   end
   box2d = hxdx.newWorld()
-  box2d:addCollisionClass(meshTypes.solid)
-  box2d:addCollisionClass(meshTypes.health)
-  box2d:addCollisionClass(meshTypes.damage)
-  box2d:addCollisionClass(meshTypes.exit)
-  box2d:addCollisionClass('player', playerCollisionSettings)
+  box2d:addCollisionClass(Collision.body.class)
+  box2d:addCollisionClass(Collision.exit.class)
+  box2d:addCollisionClass(Collision.key.class)
+  box2d:addCollisionClass(Collision.solid.class)
+  box2d:addCollisionClass(Collision.switch.class)
+  box2d:addCollisionClass(Collision.zone.class)
+  box2d:addCollisionClass(Collision.player.class, Collision.player.settings)
   box2d:collisionClassesSet()
   looper:addLoop(box2d)
 
@@ -30,13 +25,15 @@ function game:start(levelName)
   self.level = Level(levelName or levels[1])
   self.player = Player(self.level.start.x, self.level.start.y)
 
-  local background = require "classes.parallax"
-  background.scale = 2
-  background.x = 0
-  background.y = 0
+  love.graphics.setBackgroundColor(lume.color(self.level.colors.sky))
+
+  -- local background = require "classes.parallax"
+  -- background.scale = 2
+  -- background.x = 0
+  -- background.y = 0
 
   camera:clear()
-  camera:addObject(background, "background")
+  -- camera:addObject(background, "background")
   camera:addObject(self.level, "level")
   camera:addObject(self.player, "player")
 

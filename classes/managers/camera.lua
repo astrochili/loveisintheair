@@ -8,9 +8,8 @@ camera.rotation = 0
 camera.layers = {}
 
 function camera:load()
-  love.graphics.setBackgroundColor(lume.color(colors.sky, 256))
 
-  self:addLayer("background", 0.2)
+  -- self:addLayer("background", 0.2)
   self:addLayer("level", 1.0)
   self:addLayer("entities", 1.0)
   self:addLayer("player", 1.0)

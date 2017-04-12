@@ -6,8 +6,8 @@ function love.load()
   mixer:load()
   game:start()
 
-  settings.debug = true
-  mixer.music.gameplay:play()
+  -- settings.debug = true
+  -- mixer.music.gameplay:play()
 end
 
 function love.update(dt)

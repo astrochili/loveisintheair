@@ -1,11 +1,14 @@
-colors = {
-  ball = "#DB2568",
-  sky = "#F2E2D2",
-  solid = "#56B4F7",
-  damage = "rgb(224, 10, 69, 0.5)",
-  exit = "rgb(137, 96, 142, 0.5)",
-  health = "rgb(96, 153, 45, 0.5)",
-  air = "#BDBCE2"
+Color = {
+  sky = "#FFFFFF",
+  solid = "#000000",
+  red = "#FF5D73",
+  blue = "#094D92",
+  green = "#89EA59",
+  yellow = "#F9FF51",
+  trigger = "#FFFFFF",
+  exit = "#C7EAE4",
+  steam = "#FFFFFF",
+  clear = "#00000000"
 }
 
 local settings = { debug = false }
