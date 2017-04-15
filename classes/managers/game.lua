@@ -42,6 +42,7 @@ function game:restartLevel()
 end
 
 function game:nextLevel()
+  mixer.sounds.exit:play()
   local levelIndex = lume.find(levels, self.level.name) + 1
   camera:fadeOut(function()
     self:start(levels[levelIndex])

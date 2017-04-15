@@ -14,6 +14,7 @@ function Player:new(x, y, r, gang)
   self.speed = 3000
   self.isDead = false
   self.overlaps = {}
+  self.sound = nil
 
   self.steam = love.graphics.newParticleSystem(love.graphics.newImage('assets/images/circle.png'), 32)
   self.steam:setParticleLifetime(1, 2)
@@ -33,26 +34,47 @@ end
 
 function Player:update(dt)
   Player.super.update(self, dt)
-
   self.steam:update(dt)
-  if self.isDeath then return end
 
-  self:pushIfRequied(dt)
+  if self.isDeath then
+    return
+  end
 
+  local riseUp, riseDown = false, false
   for _, mesh in ipairs(self.overlaps) do
-    if mesh:is(Zone) then
-      local friendly = (mesh.gang == self.gang)
-      local radius = self:getRadius() + dt * (friendly and 5 or -50)
-      self:setRadius(radius)
+    if mesh:is(Solid) or mesh:is(Body) then
+      mixer.sounds.bump:play()
+    elseif mesh:is(Zone) then
+      if (mesh.gang == self.gang) then riseUp = true else riseDown = true end
     elseif mesh:is(Key) and mesh.gang ~= self.gang then
       self:setGang(mesh.gang, true)
       lume.remove(self.overlaps, mesh)
+      mesh:pickuped()
       mesh:destroy()
     elseif mesh:is(Exit) and not game.level.done then
       game:nextLevel()
       game.level.done = true
       return
     end
+  end
+
+  self:pushIfRequied(dt)
+  self:updateHealth(dt, riseUp, riseDown)
+end
+
+function Player:updateHealth(dt, riseUp, riseDown)
+  if riseUp then
+    mixer.sounds.health:play()
+    self:setRadius(self:getRadius() + dt * 5)
+  else
+    mixer.sounds.health:stop()
+  end
+
+  if riseDown then
+    mixer.sounds.damage:play()
+    self:setRadius(self:getRadius() + dt * -50)
+  else
+    mixer.sounds.damage:stop()
   end
 
   if self:getRadius() < 1 or self:getRadius() > 48  then
@@ -80,11 +102,14 @@ function Player:pushIfRequied(dt)
 
   if pushX ~= 0 or pushY~= 0 then
     self:push(dt, pushX, pushY)
+    mixer.sounds.steam:play()
+  else
+    mixer.sounds.steam:stop()
   end
 end
 
 function Player:push(dt, x, y)
-  self.collider.body:applyForce(x, y) -- push ball
+  self.collider.body:applyForce(x, y)
   self:setRadius(self:getRadius() - dt * 3)
   self:releaseSteam(x, y)
 end
@@ -99,6 +124,10 @@ function Player:releaseSteam(x, y)
 end
 
 function Player:kill()
+  mixer.sounds.steam:stop()
+  mixer.sounds.health:stop()
+  mixer.sounds.damage:stop()
+  mixer.sounds.death:play()
   self.isDeath = true
   self.steam:emit(8)
 end

@@ -32,6 +32,7 @@ function Switch:toggle()
   local keys = lume.keys(Gang)
   local i = lume.find(keys, target.gang)
 
+  mixer.sounds.switch:play()
   if i == #keys then
     target:setGang(Gang[keys[1]], true)
   else

@@ -3,6 +3,7 @@ log = require('libs.log')
 lume = require('libs.lume')
 hxdx = require('libs.hxdx')
 flux = require('libs.flux')
+ripple = require('libs/ripple')
 
 -- classes
 Class = require('libs.classic')
@@ -16,6 +17,7 @@ Exit = require('classes.meshes.exit')
 Key = require('classes.meshes.key')
 Zone = require('classes.meshes.zone')
 Player = require('classes.player')
+Sound = require('classes.sound')
 
 -- singletones
 settings = require('classes.managers.settings')

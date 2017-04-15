@@ -16,6 +16,7 @@ function Body:update(dt)
     if mesh:is(Key) then
       self:setGang(mesh.gang, true)
       lume.remove(self.overlaps, mesh)
+      mesh:pickuped()
       mesh:destroy()
     end
   end

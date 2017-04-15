@@ -9,8 +9,12 @@ function Key:new(shape, coords, gang)
 end
 
 function Key:draw()
-  love.graphics.setColor(lume.color(self.color, 256))
+  love.graphics.setColor(lume.color(self.color, self.alpha * 255))
   love.graphics.draw(Key.image, self:getX()-16, self:getY()-16)
+end
+
+function Key:pickuped()
+  mixer.sounds.key:play()
 end
 
 return Key
