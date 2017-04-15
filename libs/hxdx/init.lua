@@ -401,6 +401,7 @@ end
 
 function World.collisionOnExit(fixture_a, fixture_b, contact)
     local a, b = fixture_a:getUserData(), fixture_b:getUserData()
+    if a == nil or b == nil then return end
     local world = a.world
 
     if fixture_a:isSensor() and fixture_b:isSensor() then

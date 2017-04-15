@@ -1,61 +1,59 @@
-local levels = { "test", "level0", "level1" }
+local levels = { "test2", "test", "level0", "level1" }
 local game = {}
 
 function game:start(levelName)
-
   looper:removeLoop(game)
 
   -- Physical world setup
-  if box2d ~= nil then
+  if self.level ~= nil then
+    self.level:destroy()
     box2d:destroy()
     looper:removeLoop(box2d)
   end
   box2d = hxdx.newWorld()
-  box2d:addCollisionClass(Collision.body.class)
-  box2d:addCollisionClass(Collision.exit.class)
-  box2d:addCollisionClass(Collision.key.class)
-  box2d:addCollisionClass(Collision.solid.class)
-  box2d:addCollisionClass(Collision.switch.class)
-  box2d:addCollisionClass(Collision.zone.class)
-  box2d:addCollisionClass(Collision.player.class, Collision.player.settings)
-  box2d:collisionClassesSet()
+  Collision.register(box2d)
   looper:addLoop(box2d)
 
   -- Load level, player and start!
   self.level = Level(levelName or levels[1])
   self.player = Player(self.level.start.x, self.level.start.y)
 
-  love.graphics.setBackgroundColor(lume.color(self.level.colors.sky))
+  looper:addLoop(game)
 
-  -- local background = require "classes.parallax"
-  -- background.scale = 2
-  -- background.x = 0
-  -- background.y = 0
+  love.graphics.setBackgroundColor(lume.color(self.level.colors.sky, 256))
 
   camera:clear()
-  -- camera:addObject(background, "background")
+
+  camera:setParallaxBackground(self.level.background, self.level.width, self.level.height)
   camera:addObject(self.level, "level")
   camera:addObject(self.player, "player")
 
-  camera:setBounds(0, 0, self.level.width - love.graphics.getWidth(), self.level.height - love.graphics.getHeight())
+  camera:updateBounds(game.level.width, game.level.height)
   camera:setCenter(self.player:getX(), self.player:getY())
 
-  looper:addLoop(game)
-
+  camera.overlay.alpha = 1
+  camera:fadeIn()
 end
 
 function game:restartLevel()
-  self:start(self.level.name)
+  camera:fadeOut(function()
+    self:start(self.level.name)
+  end)
 end
 
 function game:nextLevel()
   local levelIndex = lume.find(levels, self.level.name) + 1
-  self:start(levels[levelIndex])
+  camera:fadeOut(function()
+    self:start(levels[levelIndex])
+  end)
 end
 
 function game:update(dt)
+  self.level:update(dt)
   self.player:update(dt)
-  camera:setCenter(self.player:getX(), self.player:getY())
+  if self.player.isDeath ~= true then
+    camera:setCenter(self.player:getX(), self.player:getY())
+  end
 end
 
 return game

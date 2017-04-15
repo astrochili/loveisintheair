@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="100">
+ <properties>
+  <property name="skycolor" type="color" value="#fff2e2d2"/>
+  <property name="solidcolor" type="color" value="#ff56b4f7"/>
+ </properties>
+ <imagelayer name="Background">
+  <image source="../images/backgrounds/4.jpg" width="323" height="247"/>
+ </imagelayer>
+ <objectgroup name="Lines"/>
+ <objectgroup color="#0000ff" name="Zones">
+  <object id="83" type="red" x="568" y="640" width="184" height="152"/>
+ </objectgroup>
+ <objectgroup name="Triggers">
+  <object id="84" name="switch" type="trigger" x="248" y="624" width="176" height="160">
+   <properties>
+    <property name="targetId" type="int" value="83"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#000000" name="Solid">
+  <object id="85" x="0" y="8" width="32" height="1016"/>
+  <object id="86" x="0" y="992" width="1024" height="32"/>
+  <object id="87" x="992" y="192" width="32" height="832"/>
+  <object id="88" x="0" y="0" width="1024" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffffff" name="Entities">
+  <object id="72" name="player" type="green" x="328" y="488" width="32" height="32">
+   <ellipse/>
+  </object>
+  <object id="76" name="body" type="red" x="464" y="440" width="64" height="64"/>
+  <object id="93" name="exit" type="trigger" x="992" y="32" width="32" height="160">
+   <properties>
+    <property name="targetId" type="int" value="83"/>
+   </properties>
+  </object>
+  <object id="96" name="key" type="green" x="328" y="224">
+   <ellipse/>
+  </object>
+  <object id="97" name="key" type="red" x="440" y="112">
+   <ellipse/>
+  </object>
+  <object id="98" name="key" type="blue" x="600" y="272">
+   <ellipse/>
+  </object>
+  <object id="99" name="key" type="yellow" x="664" y="120">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>

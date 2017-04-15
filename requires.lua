@@ -2,9 +2,11 @@
 log = require('libs.log')
 lume = require('libs.lume')
 hxdx = require('libs.hxdx')
+flux = require('libs.flux')
 
 -- classes
 Class = require('libs.classic')
+Sprite = require('classes.sprite')
 Level = require('classes.level')
 Mesh = require('classes.meshes.mesh')
 Solid = require('classes.meshes.solid')
@@ -16,8 +18,8 @@ Zone = require('classes.meshes.zone')
 Player = require('classes.player')
 
 -- singletones
-camera = require('classes.managers.camera')
 settings = require('classes.managers.settings')
+camera = require('classes.managers.camera')
 looper = require('classes.managers.looper')
 game = require('classes.managers.game')
 mixer = require('classes.managers.mixer')

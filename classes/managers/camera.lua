@@ -6,10 +6,13 @@ camera.scaleX = 1
 camera.scaleY = 1
 camera.rotation = 0
 camera.layers = {}
+camera.overlay = { alpha = 0, color = Color.black, oncomplete = nil }
+camera.background = nil
+
+local backgroundZ = 0.5
 
 function camera:load()
-
-  -- self:addLayer("background", 0.2)
+  self:addLayer("background", backgroundZ)
   self:addLayer("level", 1.0)
   self:addLayer("entities", 1.0)
   self:addLayer("player", 1.0)
@@ -27,6 +30,22 @@ function camera:addObject(obj, layerName)
       break
     end
   end
+end
+
+function camera:fadeIn(oncomplete, color, sec)
+  self.overlay.color = color or Color.black
+  self.overlay.oncomplete = oncomplete
+  flux.to(self.overlay, sec or 1, { alpha = 0 }):oncomplete(function()
+    if self.overlay.oncomplete then self.overlay.oncomplete() end
+  end)
+end
+
+function camera:fadeOut(oncomplete, color, sec)
+  self.overlay.color = color or Color.black
+  self.overlay.oncomplete = oncomplete
+  flux.to(self.overlay, sec or 1, { alpha = 1 }):oncomplete(function()
+    if self.overlay.oncomplete then self.overlay.oncomplete() end
+  end)
 end
 
 function camera:clear()
@@ -55,6 +74,10 @@ function camera:draw()
     camera:unset()
   end
 
+  if self.overlay ~= nil then
+    love.graphics.setColor(lume.color(self.overlay.color, self.overlay.alpha * 255))
+    love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
+  end
 end
 
 function camera:set()
@@ -62,6 +85,46 @@ function camera:set()
   love.graphics.rotate(-self.rotation)
   love.graphics.scale(1 / self.scaleX, 1 / self.scaleY)
   love.graphics.translate(-self.x, -self.y)
+end
+
+function camera:setParallaxBackground(image, levelW, levelH)
+  if image then
+    self.background = Sprite(image)
+  end
+  self:addObject(self.background, "background")
+end
+
+function camera:updateBackground(levelW, levelH, screenW, screenH)
+  screenW = screenW or love.graphics.getWidth()
+  screenH = screenH or love.graphics.getHeight()
+
+  local widthScale, heightScale = 1, 1
+  if screenW > self.background.image:getWidth() - self.bounds.x2 * backgroundZ then
+    local needWidth = screenW + self.bounds.x2 * backgroundZ
+    widthScale = needWidth / self.background.image:getWidth()
+  end
+  if screenH > self.background.image:getHeight() - self.bounds.y2 * backgroundZ then
+    local needHeight = screenH + self.bounds.y2 * backgroundZ
+    heightScale = needHeight / self.background.image:getHeight()
+  end
+
+  self.background.scale = math.max(widthScale, heightScale)
+end
+
+function camera:updateBounds(levelW, levelH, screenW, screenH)
+  screenW = screenW or love.graphics.getWidth()
+  screenH = screenH or love.graphics.getHeight()
+
+  local bounds = {}
+  bounds.minX = 0
+  bounds.minY = 0
+  bounds.maxX = levelW - screenW
+  if bounds.maxX < 0 then bounds.maxX = 0 end
+  bounds.maxY = levelH - screenH
+  if bounds.maxY < 0 then bounds.maxY = 0 end
+
+  camera:setBounds(bounds.minX, bounds.minY, bounds.maxX, bounds.maxY)
+  camera:updateBackground(levelW, levelH, screenW, screenH)
 end
 
 function camera:unset()

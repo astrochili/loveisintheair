@@ -11,11 +11,16 @@ function love.load()
 end
 
 function love.update(dt)
+  flux.update(dt)
   looper:update(dt)
 end
 
 function love.draw()
   camera:draw()
+end
+
+function love.resize(w, h)
+  camera:updateBounds(game.level.width, game.level.height, w, h)
 end
 
 function love.keypressed(key)

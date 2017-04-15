@@ -8,13 +8,20 @@ function Level:new(name)
   self.width = map.width * map.tilewidth
   self.height = map.height * map.tileheight
   self.start = { x = 0, y = 0, gang = Gang.red }
+  self.done = false
   self.meshes = { }
   self.entities = { }
   self.colors = { }
-  self.colors.sky = map.properties["skycolor"] or Color.sky
-  self.colors.solid = map.properties["solidcolor"] or Color.solid
+  self.colors.sky = map.properties["skycolor"]:gsub("#ff", "#") or Color.sky
+  self.colors.solid = map.properties["solidcolor"]:gsub("#ff", "#") or Color.solid
+  self.background = nil
 
   for i, layer in ipairs(map.layers) do
+    if layer.type == "imagelayer" then
+      self.background = "assets/images/backgrounds/" .. layer.image:match("([^/]-([^.]+))$")
+      goto continue
+    end
+
     for i, obj in ipairs(layer.objects) do
       local mesh = nil
 
@@ -27,7 +34,7 @@ function Level:new(name)
         elseif obj.name == "body" then
           mesh = Body(obj.shape, Level.settingsForTiledObject(obj), obj.type)
         elseif obj.name == "key" then
-          mesh = Key(Level.settingsForTiledObject(obj), obj.type)
+          mesh = Key(obj.shape, Level.settingsForTiledObject(obj), obj.type)
         else
           mesh = Zone(obj.shape, Level.settingsForTiledObject(obj), obj.type, obj.id)
         end
@@ -41,16 +48,26 @@ function Level:new(name)
       end
 
       if mesh ~= nil then
-        -- print(lume.serialize(mesh))
         table.insert(self.meshes, mesh)
       end
     end
+
+    ::continue::
   end
 
 end
 
+function Level:update()
+  for _, mesh in ipairs(self.meshes) do
+    if mesh.isDestroyed then
+      lume.remove(self.meshes, mesh)
+      mesh.collider:destroy()
+    end
+  end
+end
+
 function Level:draw()
-  for i, mesh in ipairs(self.meshes) do
+  for _, mesh in ipairs(self.meshes) do
     mesh:draw()
   end
 end
@@ -70,11 +87,29 @@ end
 
 function Level.verticesFromTiledObject(obj)
   local vertices = {}
-  for i, point in ipairs(obj.polygon) do
+  for _, point in ipairs(obj.polygon) do
     table.insert(vertices, obj.x + point.x)
     table.insert(vertices, obj.y + point.y)
   end
   return vertices
+end
+
+function Level:destroy()
+  for _, mesh in ipairs(self.meshes) do
+    looper:removeLoop(mesh)
+  end
+end
+
+function Level:find(objectId)
+  local object = nil
+
+  for _, mesh in ipairs(self.meshes) do
+    if mesh.id == objectId then
+      return mesh
+    end
+  end
+
+  return object
 end
 
 return Level
