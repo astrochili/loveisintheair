@@ -4,7 +4,7 @@ function Zone:new(shape, coords, gang, id)
   Zone.super.new(self, shape, coords, "static", Collision["zone_"..gang].class, Color[gang], id)
   self:setGang(gang)
   self.alpha = 0.8
-  self:pulse(2, 0.7)
+  self:pulse(2, 0.6)
 end
 
 function Zone:setGang(gang, animated)

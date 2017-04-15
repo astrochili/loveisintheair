@@ -23,7 +23,7 @@ return {
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      image = "../images/backgrounds/4.jpg",
+      image = "../images/backgrounds/1.jpg",
       properties = {}
     },
     {

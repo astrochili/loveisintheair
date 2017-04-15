@@ -1,7 +1,4 @@
 Color = {
-  sky = "#FFFFFF",
-  solid = "#000000",
-
   red = "#FF5D73",
   blue = "#094D92",
   green = "#89EA59",

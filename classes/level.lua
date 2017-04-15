@@ -12,8 +12,8 @@ function Level:new(name)
   self.meshes = { }
   self.entities = { }
   self.colors = { }
-  self.colors.sky = map.properties["skycolor"]:gsub("#ff", "#") or Color.sky
-  self.colors.solid = map.properties["solidcolor"]:gsub("#ff", "#") or Color.solid
+  self.colors.sky = map.properties["skycolor"]:gsub("#ff", "#")
+  self.colors.solid = map.properties["solidcolor"]:gsub("#ff", "#")
   self.background = nil
 
   for i, layer in ipairs(map.layers) do

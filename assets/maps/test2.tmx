@@ -5,7 +5,7 @@
   <property name="solidcolor" type="color" value="#ff56b4f7"/>
  </properties>
  <imagelayer name="Background">
-  <image source="../images/backgrounds/4.jpg" width="323" height="247"/>
+  <image source="../images/backgrounds/1.jpg" width="800" height="760"/>
  </imagelayer>
  <objectgroup name="Lines"/>
  <objectgroup color="#0000ff" name="Zones">

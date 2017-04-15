@@ -5,7 +5,7 @@ function Switch:new(shape, coords, targetId)
   self.targetId = targetId
   self.target = nil
   self.alpha = 0.8
-  self:pulse(2, 0.7)
+  self:pulse(2, 0.6)
   self.timer = 0
   self.tween = nil
   looper:addLoop(self)
