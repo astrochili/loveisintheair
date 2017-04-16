@@ -26,5 +26,7 @@ end
 function love.keypressed(key)
   if key == 'r' then
     game:restartLevel()
+  elseif key == 'm' then
+    settings:toggleMusic()
   end
 end

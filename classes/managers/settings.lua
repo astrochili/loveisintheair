@@ -18,8 +18,18 @@ local settings = { debug = false }
 
 function settings:load()
   self.title = love.window.getTitle()
+  self.music = true
   love.mouse.setVisible(false)
   looper:addLoop(self)
+end
+
+function settings:toggleMusic()
+  self.music = not self.music
+  if self.music then
+    mixer.sounds.music:play()
+  else
+    mixer.sounds.music:stop()
+  end
 end
 
 function settings:update(dt)
