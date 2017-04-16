@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="83">
  <properties>
-  <property name="skycolor" type="color" value="#fff2e2d2"/>
+  <property name="background" value="2.jpg"/>
   <property name="solidcolor" type="color" value="#ff56b4f7"/>
  </properties>
  <objectgroup name="Lines">

@@ -12,16 +12,10 @@ function Level:new(name)
   self.meshes = { }
   self.entities = { }
   self.colors = { }
-  self.colors.sky = map.properties["skycolor"]:gsub("#ff", "#")
   self.colors.solid = map.properties["solidcolor"]:gsub("#ff", "#")
-  self.background = nil
+  self.background = "assets/images/backgrounds/"..map.properties["background"]
 
   for i, layer in ipairs(map.layers) do
-    if layer.type == "imagelayer" then
-      self.background = "assets/images/backgrounds/" .. layer.image:match("([^/]-([^.]+))$")
-      goto continue
-    end
-
     for i, obj in ipairs(layer.objects) do
       local mesh = nil
 

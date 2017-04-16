@@ -13,7 +13,7 @@ function mixer:load()
     health = Sound('assets/sounds/health.mp3', SoundType.loopinout, 0.5, 0.2),
     damage = Sound('assets/sounds/damage.mp3', SoundType.loopinout, 0.1, 0.2),
 
-    music = Sound('assets/music/memories.mp3', SoundType.music)
+    music = Sound('assets/music/gameplay.mp3', SoundType.music)
   }
 
   looper:addLoop(self)

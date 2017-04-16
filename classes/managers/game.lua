@@ -20,8 +20,6 @@ function game:start(levelName)
 
   looper:addLoop(game)
 
-  love.graphics.setBackgroundColor(lume.color(self.level.colors.sky, 256))
-
   camera:clear()
 
   camera:setParallaxBackground(self.level.background, self.level.width, self.level.height)

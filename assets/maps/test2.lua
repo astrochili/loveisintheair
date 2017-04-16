@@ -9,23 +9,13 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextobjectid = 100,
-  backgroundcolor = { 255, 255, 255 },
+  backgroundcolor = { 227, 227, 227 },
   properties = {
-    ["skycolor"] = "#fff2e2d2",
+    ["background"] = "1.jpg",
     ["solidcolor"] = "#ff56b4f7"
   },
   tilesets = {},
   layers = {
-    {
-      type = "imagelayer",
-      name = "Background",
-      visible = true,
-      opacity = 1,
-      offsetx = 0,
-      offsety = 0,
-      image = "../images/backgrounds/1.jpg",
-      properties = {}
-    },
     {
       type = "objectgroup",
       name = "Lines",
@@ -105,9 +95,9 @@ return {
           type = "",
           shape = "rectangle",
           x = 0,
-          y = 8,
+          y = 32,
           width = 32,
-          height = 1016,
+          height = 960,
           rotation = 0,
           visible = true,
           properties = {}
@@ -133,7 +123,7 @@ return {
           x = 992,
           y = 192,
           width = 32,
-          height = 832,
+          height = 800,
           rotation = 0,
           visible = true,
           properties = {}

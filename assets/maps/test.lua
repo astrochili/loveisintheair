@@ -11,7 +11,7 @@ return {
   nextobjectid = 83,
   backgroundcolor = { 255, 255, 255 },
   properties = {
-    ["skycolor"] = "#fff2e2d2",
+    ["background"] = "2.jpg",
     ["solidcolor"] = "#ff56b4f7"
   },
   tilesets = {},

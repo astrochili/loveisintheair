@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" backgroundcolor="#ffffff" nextobjectid="100">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" backgroundcolor="#e3e3e3" nextobjectid="100">
  <properties>
-  <property name="skycolor" type="color" value="#fff2e2d2"/>
+  <property name="background" value="1.jpg"/>
   <property name="solidcolor" type="color" value="#ff56b4f7"/>
  </properties>
- <imagelayer name="Background">
-  <image source="../images/backgrounds/1.jpg" width="800" height="760"/>
- </imagelayer>
  <objectgroup name="Lines"/>
  <objectgroup color="#0000ff" name="Zones">
   <object id="83" type="red" x="568" y="640" width="184" height="152"/>
@@ -19,9 +16,9 @@
   </object>
  </objectgroup>
  <objectgroup color="#000000" name="Solid">
-  <object id="85" x="0" y="8" width="32" height="1016"/>
+  <object id="85" x="0" y="32" width="32" height="960"/>
   <object id="86" x="0" y="992" width="1024" height="32"/>
-  <object id="87" x="992" y="192" width="32" height="832"/>
+  <object id="87" x="992" y="192" width="32" height="800"/>
   <object id="88" x="0" y="0" width="1024" height="32"/>
  </objectgroup>
  <objectgroup color="#ffffff" name="Entities">
