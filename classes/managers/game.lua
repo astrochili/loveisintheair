@@ -1,4 +1,4 @@
-local levels = { "test2", "test", "level0", "level1" }
+local levels = { "dev", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "end" }
 local game = {}
 
 function game:start(levelName)
@@ -17,6 +17,7 @@ function game:start(levelName)
   -- Load level, player and start!
   self.level = Level(levelName or levels[1])
   self.player = Player(self.level.start.x, self.level.start.y)
+  self.player:setGang(self.level.start.gang)
 
   looper:addLoop(game)
 

@@ -44,6 +44,7 @@ function Player:update(dt)
   for _, mesh in ipairs(self.overlaps) do
     if mesh:is(Solid) or mesh:is(Body) then
       mixer.sounds.bump:play()
+      lume.remove(self.overlaps, mesh)
     elseif mesh:is(Zone) then
       if (mesh.gang == self.gang) then riseUp = true else riseDown = true end
     elseif mesh:is(Key) and mesh.gang ~= self.gang then
@@ -110,7 +111,7 @@ end
 
 function Player:push(dt, x, y)
   self.collider.body:applyForce(x, y)
-  self:setRadius(self:getRadius() - dt * 3)
+  self:setRadius(self:getRadius() - dt * 5)
   self:releaseSteam(x, y)
 end
 

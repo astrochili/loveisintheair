@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" backgroundcolor="#e3e3e3" nextobjectid="121">
+ <properties>
+  <property name="background" value="1.jpg"/>
+  <property name="solidcolor" type="color" value="#ff56b4f7"/>
+ </properties>
+ <objectgroup name="Lines"/>
+ <objectgroup color="#0000ff" name="Zones"/>
+ <objectgroup name="Triggers"/>
+ <objectgroup color="#000000" name="Solid">
+  <object id="104" x="704" y="1184" width="640" height="32"/>
+  <object id="105" x="1312" y="736" width="32" height="448"/>
+  <object id="107" x="704" y="736" width="608" height="32"/>
+  <object id="108" x="736" y="960" width="384" height="32"/>
+  <object id="109" x="704" y="960" width="32" height="224"/>
+  <object id="111" x="704" y="736">
+   <polygon points="0,0 184,-40 368,-48 640,0"/>
+  </object>
+  <object id="112" x="1344" y="736">
+   <polygon points="0,0 72,104 40,264 0,264 40,264 40,464 -32,520 0,480"/>
+  </object>
+  <object id="113" x="1344" y="1216">
+   <polygon points="0,0 -32,40 -280,64 -352,0"/>
+  </object>
+  <object id="114" x="992" y="1216">
+   <polygon points="0,0 -192,40 -328,0"/>
+  </object>
+  <object id="115" x="640" y="1216">
+   <polygon points="24,0 8,-192 64,-256 64,0"/>
+  </object>
+  <object id="116" x="704" y="736">
+   <polygon points="0,0 -16,32 0,32"/>
+  </object>
+  <object id="117" x="1312" y="1184">
+   <polygon points="0,0 -40,0 0,-96"/>
+  </object>
+  <object id="118" x="1216" y="768">
+   <polygon points="0,0 96,56 96,0"/>
+  </object>
+  <object id="119" x="1120" y="960">
+   <polygon points="0,0 32,16 0,32"/>
+  </object>
+  <object id="120" x="736" y="1048">
+   <polygon points="0,0 56,-56 0,-56"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffffff" name="Entities">
+  <object id="72" name="player" type="green" x="800" y="1056" width="64" height="64">
+   <ellipse/>
+  </object>
+  <object id="93" name="exit" type="trigger" x="704" y="768" width="64" height="192">
+   <properties>
+    <property name="targetId" type="int" value="83"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
