@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="red" color="#ff0000"/>
+ <objecttype name="blue" color="#0000ff"/>
+ <objecttype name="green" color="#00ff00"/>
+ <objecttype name="yellow" color="#ffff00"/>
+ <objecttype name="trigger" color="#00ffff">
+  <property name="targetId" type="int" default="0"/>
+ </objecttype>
+</objecttypes>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="96" height="96" tilewidth="32" tileheight="32" backgroundcolor="#e3e3e3" nextobjectid="381">
+ <properties>
+  <property name="background" value="3.jpg"/>
+  <property name="solidcolor" type="color" value="#ff56b4f7"/>
+ </properties>
+ <objectgroup name="Lines"/>
+ <objectgroup color="#0000ff" name="Zones">
+  <object id="299" type="green" x="864" y="1184">
+   <polygon points="592,-24 768,-24 720,168 640,168 552,8"/>
+  </object>
+  <object id="373" type="blue" x="816" y="1400">
+   <polygon points="0,0 272,-40 272,104 16,80"/>
+  </object>
+  <object id="375" type="yellow" x="2640" y="1536">
+   <polygon points="56,32 16,-24 96,-80 160,-64 128,24"/>
+  </object>
+  <object id="374" type="red" x="1520" y="1648">
+   <polygon points="24,8 96,64 152,-16 64,-64"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Triggers">
+  <object id="237" name="exit" type="trigger" x="2632" y="1748.67">
+   <polygon points="-8,-12.6667 56,-60.6667 56,155.333 -8,139.333"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#000000" name="Solid">
+  <object id="285" x="416" y="1384" width="32" height="576"/>
+  <object id="288" x="448" y="1928" width="864" height="32"/>
+  <object id="290" x="1088" y="1352" width="32" height="384"/>
+  <object id="292" x="1328" y="1128" width="656" height="32"/>
+  <object id="293" x="1504" y="1352" width="216" height="32"/>
+  <object id="294" x="1984" y="1128" width="32" height="576"/>
+  <object id="295" x="1984" y="1704" width="104" height="32"/>
+  <object id="296" x="1760" y="1456" width="32" height="504"/>
+  <object id="297" x="1792" y="1928" width="528" height="32"/>
+  <object id="300" x="448" y="1528">
+   <polygon points="0,0 88,-48 184,-144 0,-144"/>
+  </object>
+  <object id="302" x="448" y="1792">
+   <polygon points="0,0 56,56 80,136 0,136"/>
+  </object>
+  <object id="303" x="744" y="1832">
+   <polygon points="-88,-8 208,0 376,-56 376,-96 -176,-96"/>
+  </object>
+  <object id="305" x="1248" y="1928">
+   <polygon points="-24,0 64,-96 64,0"/>
+  </object>
+  <object id="306" x="1120" y="1736">
+   <polygon points="0,-176 24,-296 24,-384 0,-384"/>
+  </object>
+  <object id="307" x="1312" y="1704">
+   <polygon points="0,0 -32,-176 56,-336"/>
+  </object>
+  <object id="308" x="1144" y="1360">
+   <polygon points="0,-8 48,-112 8,-160 -56,-8"/>
+  </object>
+  <object id="309" x="1192" y="1248">
+   <polygon points="0,0 136,-72 136,-120 -40,-48"/>
+  </object>
+  <object id="312" x="1680" y="1352">
+   <polygon points="40,0 112,104 80,120 40,32"/>
+  </object>
+  <object id="313" x="1328" y="1176">
+   <polygon points="0,0 88,16 128,-16 0,-16"/>
+  </object>
+  <object id="314" x="1984" y="1160">
+   <polygon points="0,0 -320,0 -112,48 0,40"/>
+  </object>
+  <object id="315" x="1984" y="1432">
+   <polygon points="0,0 -72,184 0,304"/>
+  </object>
+  <object id="316" x="1792" y="1824">
+   <polygon points="0,0 248,104 0,104"/>
+  </object>
+  <object id="317" x="2320" y="1704">
+   <polygon points="0,-80 168,-120 352,-80 208,48"/>
+  </object>
+  <object id="318" x="2320" y="1928">
+   <polygon points="0,-80 216,16 240,64 48,80 0,32"/>
+  </object>
+  <object id="319" x="2320" y="1704">
+   <polygon points="0,-80 0,48 128,88 208,48"/>
+  </object>
+  <object id="320" x="2320" y="1736">
+   <polygon points="-232,0 -232,48 -336,0"/>
+  </object>
+  <object id="321" x="2600" y="1984">
+   <polygon points="-40,8 88,-80 24,-96 -64,-40"/>
+  </object>
+  <object id="322" x="2672" y="1624">
+   <polygon points="0,0 16,64 -48,112 -144,128"/>
+  </object>
+  <object id="325" x="1320" y="1960">
+   <polygon points="-8,0 88,-232 -8,-256"/>
+  </object>
+  <object id="346" x="2088" y="1784">
+   <polygon points="0,0 128,-88 56,-176 0,-80"/>
+  </object>
+  <object id="347" x="2216" y="1696">
+   <polygon points="0,0 104,56 104,-72 -72,-88"/>
+  </object>
+  <object id="348" x="2320" y="1848">
+   <polygon points="0,0 -80,-24 -176,24 -200,80 0,80"/>
+  </object>
+  <object id="349" x="728" y="1384">
+   <polygon points="0,0 40,40 40,0"/>
+  </object>
+  <object id="351" x="416" y="1352">
+   <polygon points="0,0 -72,328 0,608"/>
+  </object>
+  <object id="352" x="416" y="1960">
+   <polygon points="0,0 184,80 352,112 560,40 592,0"/>
+  </object>
+  <object id="354" x="976" y="2000">
+   <polygon points="0,0 152,32 336,-40 32,-40"/>
+  </object>
+  <object id="356" x="1032" y="1704">
+   <polygon points="-72,32 56,-72 56,32"/>
+  </object>
+  <object id="359" x="1656" y="1128">
+   <polygon points="0,0 216,-64 360,0"/>
+  </object>
+  <object id="360" x="2016" y="1128">
+   <polygon points="0,0 56,216 0,432"/>
+  </object>
+  <object id="361" x="2016" y="1656">
+   <polygon points="0,0 56,48 0,48"/>
+  </object>
+  <object id="362" x="2176" y="1960">
+   <polygon points="0,0 -112,48 -200,0"/>
+  </object>
+  <object id="363" x="1760" y="1648">
+   <polygon points="0,0 -56,208 0,352"/>
+  </object>
+  <object id="364" x="1760" y="2000">
+   <polygon points="0,0 144,-40 0,-40"/>
+  </object>
+  <object id="365" x="1504" y="1384">
+   <polygon points="0,0 256,88 216,0"/>
+  </object>
+  <object id="366" x="816" y="1352">
+   <polygon points="0,48 16,128 -48,184 -48,0"/>
+  </object>
+  <object id="367" x="568" y="1616" width="88" height="120"/>
+  <object id="368" x="568" y="1600">
+   <polygon points="0,16 200,-64 200,-64 200,16"/>
+  </object>
+  <object id="369" x="656" y="1632">
+   <polygon points="0,16 112,-16 0,-16"/>
+  </object>
+  <object id="370" x="656" y="1696">
+   <polygon points="0,0 56,40 0,40"/>
+  </object>
+  <object id="371" x="448" y="1352">
+   <polygon points="-32,0 184,-24 320,0 320,32 -32,32"/>
+  </object>
+  <object id="372" x="1368" y="1376">
+   <polygon points="0,-8 136,-24 136,8 24,32"/>
+  </object>
+  <object id="376" x="1408" y="1728">
+   <polygon points="0,0 -96,-24 -72,-192"/>
+  </object>
+  <object id="377" x="1336" y="1536">
+   <polygon points="0,0 56,-128 32,-168"/>
+  </object>
+  <object id="378" x="816" y="1464">
+   <polygon points="16,16 -8,120 -48,152 -48,72"/>
+  </object>
+  <object id="380" x="952" y="1928">
+   <polygon points="0,0 128,-24 272,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffffff" name="Entities">
+  <object id="72" name="player" type="green" x="672" y="1480">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>
