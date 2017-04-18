@@ -1,5 +1,4 @@
 -- libs
-log = require('libs.log')
 lume = require('libs.lume')
 hxdx = require('libs.hxdx')
 flux = require('libs.flux')
