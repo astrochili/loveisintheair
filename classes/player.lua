@@ -27,6 +27,7 @@ function Player:draw()
 
   if self.isDeath then
     love.graphics.print("Press R to restart level", self:getX(), self:getY(), 0, 1.5, 1.5)
+    game:restartLevel()
   else
     Player.super.draw(self)
   end
@@ -93,13 +94,36 @@ function Player:setGang(gang, animated)
 end
 
 function Player:pushIfRequied(dt)
+  local directionX, directionY = 0, 0
+  local partX, partY = 0, 0
   local pushX, pushY = 0, 0
 
-  if love.keyboard.isDown("right") then pushX = self.speed
-  elseif love.keyboard.isDown("left") then pushX = -self.speed end
+  local touchId = love.touch.getTouches()[1]
+  if touchId ~= nil then
+    local touchX, touchY = love.touch.getPosition(touchId)
+    local centerX, centerY = love.graphics.getWidth()/2, love.graphics.getHeight()/2
+    local vectorX, vectorY = centerX - touchX, centerY - touchY
+    partX = math.abs(vectorX) / (math.abs(vectorX) + math.abs(vectorY))
+    partY = math.abs(vectorY) / (math.abs(vectorX) + math.abs(vectorY))
+    directionX = vectorX > 0 and 1 or -1
+    directionY = vectorY > 0 and 1 or -1
+  else
+    if love.keyboard.isDown("right") then directionX = 1
+    elseif love.keyboard.isDown("left") then directionX = -1 end
 
-  if love.keyboard.isDown("up") then pushY = -self.speed
-  elseif love.keyboard.isDown("down") then pushY = self.speed end
+    if love.keyboard.isDown("down") then directionY = 1
+    elseif love.keyboard.isDown("up") then directionY = -1 end
+
+    if directionX ~= 0 or directionY~= 0 then
+      partX = math.abs(directionX) / (math.abs(directionX) + math.abs(directionY))
+      partY = math.abs(directionY) / (math.abs(directionX) + math.abs(directionY))
+    end
+  end
+
+
+
+  pushX = partX * self.speed * directionX
+  pushY = partY * self.speed * directionY
 
   if pushX ~= 0 or pushY~= 0 then
     self:push(dt, pushX, pushY)
