@@ -25,7 +25,7 @@ function Mesh:new(shape, coords, type, collisionClass, color, id)
   end
 
   if self.collider ~= nil then
-    self.collider:setUserData(self)
+    self.collider:setObject(self)
   end
 end
 
@@ -35,32 +35,34 @@ end
 
 function Mesh:checkCollisions()
   for _, class in ipairs(Collision[self.collisionClass].settings.enter) do
-    local enter, another = self.collider:enter(class)
-    if enter then
-      lume.push(self.overlaps, another.user_data)
+    if self.collider:enter(class) then
+      local collision = self.collider:getEnterCollisionData(class)
+      local another = collision.collider:getObject()
+      lume.push(self.overlaps, another)
     end
   end
 
   for _, class in ipairs(Collision[self.collisionClass].settings.exit) do
-    local enter, another = self.collider:exit(class)
-    if enter then
-      lume.remove(self.overlaps, another.user_data)
+    if self.collider:exit(class) then
+      local collision = self.collider:getExitCollisionData(class)
+      local another = collision.collider:getObject()
+      lume.remove(self.overlaps, another)
     end
   end
 end
 
 function Mesh:draw()
-  love.graphics.setColor(lume.color(self.color, self.alpha * 255))
+  love.graphics.setColor(lume.color(self.color, self.alpha))
   if self.shape == MeshShape.polygon or self.shape == MeshShape.rect then
     love.graphics.polygon("fill", self:getPoints())
     if self.inline then
-      love.graphics.setColor(lume.color(Color.black, self.alpha * 63))
+      love.graphics.setColor(lume.color(Color.black, self.alpha * 0.25))
       love.graphics.polygon("line", self:getPoints())
     end
   elseif self.shape == MeshShape.circle then
     love.graphics.circle("fill", self:getX(), self:getY(), self:getRadius())
     if self.inline then
-      love.graphics.setColor(lume.color(Color.black, self.alpha * 63))
+      love.graphics.setColor(lume.color(Color.black, self.alpha * 0.25))
       love.graphics.circle("line", self:getX(), self:getY(), self:getRadius())
     end
   end

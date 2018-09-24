@@ -18,11 +18,11 @@ function Player:new(x, y, r, gang)
 
   self.steam = love.graphics.newParticleSystem(love.graphics.newImage('assets/images/circle.png'), 32)
   self.steam:setParticleLifetime(1, 2)
-  self.steam:setColors(255, 255, 255, 255, 255, 255, 255, 0)
+  self.steam:setColors(1, 1, 1, 1, 1, 1, 1, 0)
 end
 
 function Player:draw()
-  love.graphics.setColor(lume.color(Color.steam, 256))
+  love.graphics.setColor(lume.color(Color.steam, 1))
   love.graphics.draw(self.steam)
 
   if self.isDeath then

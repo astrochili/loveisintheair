@@ -75,7 +75,7 @@ function camera:draw()
   end
 
   if self.overlay ~= nil then
-    love.graphics.setColor(lume.color(self.overlay.color, self.overlay.alpha * 255))
+    love.graphics.setColor(lume.color(self.overlay.color, self.overlay.alpha))
     love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
   end
 end

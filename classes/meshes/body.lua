@@ -27,7 +27,7 @@ function Body:setGang(gang, animated)
   self.gang = gang or Gang.red
   self:setColor(Color[self.gang] or Color.trigger, animated and 0.3 or 0)
   self.collisionClass = self.gang and Collision["body_"..self.gang].class or Collision.body.class
-  self.collider:changeCollisionClass(self.collisionClass)
+  self.collider:setCollisionClass(self.collisionClass)
 end
 
 return Body

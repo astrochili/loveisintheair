@@ -9,7 +9,7 @@ function Key:new(shape, coords, gang)
 end
 
 function Key:draw()
-  love.graphics.setColor(lume.color(self.color, self.alpha * 255))
+  love.graphics.setColor(lume.color(self.color, self.alpha))
   love.graphics.draw(Key.image, self:getX()-16, self:getY()-16)
 end
 

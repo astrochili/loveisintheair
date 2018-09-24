@@ -12,7 +12,7 @@ function Zone:setGang(gang, animated)
   self.gang = gang or Gang.red
   self:setColor(Color[self.gang], animated and 0.3 or 0)
   self.collisionClass = Collision["zone_"..self.gang].class
-  self.collider:changeCollisionClass(self.collisionClass)
+  self.collider:setCollisionClass(self.collisionClass)
 end
 
 return Zone

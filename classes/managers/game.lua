@@ -1,4 +1,4 @@
-local levels = { "1", "2", "3", "4", "5", "6", "end" }
+local levels = { "end", "1", "2", "3", "4", "5", "6", "end" }
 local game = {}
 
 function game:start(levelName)
@@ -10,7 +10,7 @@ function game:start(levelName)
     box2d:destroy()
     looper:removeLoop(box2d)
   end
-  box2d = hxdx.newWorld()
+  box2d = wf.newWorld()
   Collision.register(box2d)
   looper:addLoop(box2d)
 
