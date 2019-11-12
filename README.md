@@ -1,10 +1,10 @@
 # Love Is In The Air
 
-A game about the lucky balloon on the LÖVE game framework.
+A game about the lucky balloon created with the LÖVE framework in Lua.
 
-It was made for GamesJamKanobu 2017 in a couple of weeks in the spare time.
+I made it for GamesJamKanobu 2017 in a couple of weeks in my spare time.
 
-You can download and play it [here](https://astrochili.itch.io/love-is-in-the-air).
+You can download and try it [here](https://astrochili.itch.io/love-is-in-the-air).
 
-![left](https://img.itch.zone/aW1hZ2UvMTMyNTA2LzYyMTIzMi5naWY=/347x500/IOqyWw.gif)
-![right](https://img.itch.zone/aW1hZ2UvMTMyNTA2LzYyMTI0NC5naWY=/original/dJFh6u.gif)
+![Demo GIF](gifs/demo-1.gif)
+![Demo GIF](gifs/demo-2.gif)
